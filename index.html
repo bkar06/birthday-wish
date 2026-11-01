@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIP Abacus Birthday Celebration</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8ef;
+    color: #20233a;
+    overflow-x: hidden;
+}
+
+button, select {
+    font-family: inherit;
+}
+
+/* INTRO LOGO */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #10162e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    transition: opacity 1s, visibility 1s;
+}
+
+#intro img {
+    width: 230px;
+    max-width: 80%;
+    animation: logoEnter 1.5s ease;
+}
+
+#intro p {
+    margin-top: 25px;
+    letter-spacing: 3px;
+    color: #ffbd70;
+    animation: fadeIn 2s;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes logoEnter {
+    from {
+        transform: scale(.1) rotate(-20deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 6%;
+    background: white;
+    box-shadow: 0 4px 20px #00000008;
+}
+
+header img {
+    width: 90px;
+}
+
+header h3 {
+    color: #ef7900;
+    font-size: 20px;
+}
+
+header p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 75px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #e9eaff, #fff0dc);
+}
+
+.hero .tag {
+    display: inline-block;
+    padding: 10px 18px;
+    background: white;
+    border-radius: 30px;
+    color: #526bff;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 75px);
+    margin: 25px 0 10px;
+    color: #526bff;
+}
+
+.hero h2 {
+    font-size: clamp(22px, 4vw, 38px);
+    margin: 15px 0;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 15px auto;
+    line-height: 1.8;
+    color: #666;
+}
+
+.primary-btn {
+    border: none;
+    background: #526bff;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #526bff44;
+}
+
+/* COMMON SECTIONS */
+
+section {
+    max-width: 1150px;
+    margin: auto;
+    padding: 55px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(25px, 4vw, 38px);
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* STUDENT SELECT */
+
+.student-box {
+    max-width: 750px;
+    margin: auto;
+}
+
+select {
+    width: 100%;
+    padding: 17px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 15px;
+    outline: none;
+}
+
+select:focus {
+    border-color: #526bff;
+}
+
+.students {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.student {
+    padding: 17px;
+    background: white;
+    color: #20233a;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: left;
+    transition: .25s;
+    overflow-wrap: anywhere;
+}
+
+.student:hover {
+    transform: translateY(-3px);
+    border-color: #526bff;
+}
+
+.student.active {
+    background: #e9eaff;
+    border: 2px solid #526bff;
+}
+
+.student strong {
+    font-size: 13px;
+}
+
+.student small {
+    display: block;
+    margin-top: 9px;
+    color: #777;
+}
+
+/* CAKE */
+
+.cake {
+    display: none;
+    text-align: center;
+    padding: 35px 20px;
+    background: linear-gradient(135deg, #fff0dc, #ffe3ed);
+    border-radius: 25px;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.cake.show {
+    display: block;
+    animation: cakeOpen 1s ease;
+}
+
+.cake-emoji {
+    display: block;
+    font-size: 110px;
+    animation: cakeBounce 1.5s infinite;
+}
+
+.cake h2 {
+    margin: 15px 0;
+    color: #ef7900;
+}
+
+.cake p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.birth-details {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    line-height: 2;
+}
+
+@keyframes cakeOpen {
+    from {
+        transform: scale(.1) rotate(-10deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cakeBounce {
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* WISHES */
+
+.wishes {
+    background: #10162e;
+    color: white;
+    padding: 35px 25px;
+    border-radius: 22px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.wishes h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.wishes p {
+    color: #ddd;
+    line-height: 2;
+    max-width: 700px;
+    margin: auto;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #00000008;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 40px;
+}
+
+.card h3 {
+    margin: 15px 0;
+}
+
+.card p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #526bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* SPECIAL MOMENT */
+
+.memory {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #e9eaff, #fff0dc);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+.memory h3 {
+    margin-bottom: 15px;
+}
+
+.memory p {
+    line-height: 1.8;
+    color: #666;
+}
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 15px;
+    z-index: 999;
+    pointer-events: none;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: #10162e;
+    color: white;
+}
+
+footer img {
+    width: 100px;
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+footer p {
+    margin-top: 12px;
+    color: #ccc;
+    line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    .students {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 50px 15px;
+    }
+
+    section {
+        padding: 40px 15px;
+    }
+
+    header img {
+        width: 75px;
+    }
+}
+
+@media(max-width:420px) {
+
+    .students {
+        grid-template-columns: 1fr;
+    }
+
+    .student {
+        padding: 15px;
+    }
+
+    .cake-emoji {
+        font-size: 85px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO INTRO -->
+
+<div id="intro">
+
+    <img src="https://media.giphy.com/media/iB3TmhEwjGnw8cBu9U/giphy.gif" alt="SIP Abacus Logo">
+
+    <p>LEARN • IMAGINE • CELEBRATE</p>
+
+</div>
+
+<!-- HEADER -->
+
+<header>
+
+    <img src="https://media.giphy.com/media/HmrBDAP2AOWQtFqpNK/giphy.gif" alt="SIP Abacus Logo">
+
+    <div>
+        <h3>SIP ABACUS</h3>
+        <p>Sribhumi & Badarpur Branch</p>
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <div class="tag">
+        🎓 SIP ABACUS STUDENT CELEBRATION
+    </div>
+
+    <h1>🎉 Happy Birthday 🎉</h1>
+
+    <h2 id="heroName">Our Superstar!</h2>
+
+    <p>
+        Today is your special day!
+        Keep learning, keep smiling,
+        and keep shining bright.
+    </p>
+
+    <button class="primary-btn"
+        onclick="document.getElementById('birthday').scrollIntoView()">
+
+        🎂 Choose Birthday Student
+
+    </button>
+
+</div>
+
+<!-- BIRTHDAY STUDENTS -->
+
+<section id="birthday">
+
+    <h2 class="section-title">
+        🎂 November Birthday Stars
+    </h2>
+
+    <p class="section-subtitle">
+        Choose any student to open their birthday celebration!
+        <br>
+        All student birth dates are included.
+    </p>
+
+    <div class="student-box">
+
+        <select id="studentSelect" onchange="chooseStudent()">
+
+            <option value="">
+                🎓 Choose a student...
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="students" id="studentGrid"></div>
+
+    <!-- CAKE -->
+
+    <div class="cake" id="cake">
+
+        <span class="cake-emoji">🎂</span>
+
+        <h2 id="cakeTitle">
+            Your Birthday Cake!
+        </h2>
+
+        <div class="birth-details">
+
+            <p>
+                🎓 Student:
+                <strong id="studentName">Choose Student</strong>
+            </p>
+
+            <p>
+                📅 Date of Birth:
+                <strong id="studentDOB">DD/MM/YYYY</strong>
+            </p>
+
+        </div>
+
+        <p>
+            Make a wish and enjoy your special day! 🎈
+        </p>
+
+        <button class="primary-btn" onclick="celebrate()">
+            🎊 Celebrate Birthday
+        </button>
+
+    </div>
+
+    <!-- BIRTHDAY WISHES -->
+
+    <div class="wishes">
+
+        <h2 id="wishTitle">
+            Happy Birthday! 🎉
+        </h2>
+
+        <p id="wishText">
+
+            Choose your name to see your special birthday wishes.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- SPECIAL MOMENTS -->
+
+<section>
+
+    <h2 class="section-title">
+        ✨ Special Moments
+    </h2>
+
+    <p class="section-subtitle">
+        Every student is special.
+        Every achievement deserves celebration.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <span class="card-icon">🌟</span>
+
+            <h3>Learning Achievements</h3>
+
+            <p id="learning">
+
+                Every little improvement is a big achievement.
+                Keep practicing and believe in yourself!
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <span class="card-icon">🤝</span>
+
+            <h3>Friendship & Fun</h3>
+
+            <p id="friendship">
+
+                May your birthday bring laughter,
+                friendship, and beautiful memories.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <span class="card-icon">🚀</span>
+
+            <h3>Dream Big</h3>
+
+            <p id="dream">
+
+                Believe in your dreams.
+                Your future is full of amazing possibilities!
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- PERSONAL MEMORY -->
+
+    <div class="memory">
+
+        <h3 id="memoryTitle">
+            📸 Your Special Birthday Moment
+        </h3>
+
+        <p id="memoryText">
+
+            Select a birthday student to create
+            a personalized birthday memory.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- STUDY MATERIALS -->
+
+<section>
+
+    <h2 class="section-title">
+        📚 Study Materials
+    </h2>
+
+    <p class="section-subtitle">
+        Learn something new and keep your brain active!
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <span class="card-icon">🧮</span>
+
+            <h3>Abacus Learning</h3>
+
+            <p>
+                Improve calculation skills,
+                number understanding,
+                and mental mathematics.
+            </p>
+
+            <a href="https://super-kids3424.github.io/sip-abcus-sri-bdp/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                Explore SIP Abacus →
+
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <span class="card-icon">✍️</span>
+
+            <h3>Math Practice</h3>
+
+            <p>
+                Practice addition,
+                subtraction,
+                multiplication,
+                and number puzzles.
+            </p>
+
+            <a href="https://biprajitkar503-crypto.github.io/math-practice/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                Practice Mathematics →
+
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <span class="card-icon">🧠</span>
+
+            <h3>Brain Games</h3>
+
+            <p>
+                Challenge your memory,
+                concentration,
+                and logical thinking.
+            </p>
+
+            <a href="https://biprajitkar503-crypto.github.io/brain-games/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                Explore Brain Games →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+
+    <h3 style="margin-top:15px">
+        SIP ABACUS
+    </h3>
+
+    <p>
+        Sribhumi & Badarpur Branch
+    </p>
+
+    <p>
+        Made with ❤️ for our wonderful students
+    </p>
+
+    <p>
+        🎂 Learn • Imagine • Celebrate 🎂
+    </p>
+
+</footer>
+
+<script>
+
+// =====================================
+// ALL 39 STUDENTS WITH DATE OF BIRTH
+// Format: DD/MM/YYYY
+// =====================================
+
+const students = [
+
+    { name: "PRIYASISH DEB", dob: "01/11/2012" },
+
+    { name: "SUHAYEL TANVIR LASKAR", dob: "08/11/2013" },
+
+    { name: "PUSHPA DAS GUPTA", dob: "11/11/2013" },
+
+    { name: "BASABDUTTAA CHANDA", dob: "13/11/2013" },
+
+    { name: "AFNAN IFRAN CHOUDHURY", dob: "05/11/2014" },
+
+    { name: "RIDDHISMOYA NATH", dob: "05/11/2014" },
+
+    { name: "ANISHA AKTAR", dob: "11/11/2014" },
+
+    { name: "RIAZUR RAHAMAN", dob: "11/11/2014" },
+
+    { name: "RATNADEEP DEY", dob: "25/11/2014" },
+
+    { name: "SHAHID AFRIDI", dob: "08/11/2015" },
+
+    { name: "SNEHAL ROY", dob: "10/11/2015" },
+
+    { name: "ALISHA FERDOUSE", dob: "18/11/2015" },
+
+    { name: "PRITOM CHANDA", dob: "26/11/2015" },
+
+    { name: "MEHAK NASRIN", dob: "04/11/2016" },
+
+    { name: "MUHAMMAD MUHCHIN CHOUDHURY", dob: "10/11/2016" },
+
+    { name: "DEBANGSHU SHIL", dob: "12/11/2016" },
+
+    { name: "PROKRITI DAS", dob: "20/11/2016" },
+
+    { name: "BIPROJIT DAS", dob: "22/11/2016" },
+
+    { name: "ADRIJA DAS", dob: "30/11/2016" },
+
+    { name: "SAMAGATO DAS", dob: "02/11/2017" },
+
+    { name: "DIBYANKA ROY", dob: "08/11/2017" },
+
+    { name: "HUSSAIN AHMAD", dob: "09/11/2017" },
+
+    { name: "RITH PAUL", dob: "18/11/2017" },
+
+    { name: "SORFARAJ KHAN", dob: "18/11/2017" },
+
+    { name: "SRIJOY CHAKRABORTY", dob: "21/11/2017" },
+
+    { name: "SOUMYADEEEP SAHA", dob: "23/11/2017" },
+
+    { name: "MARIA SIDDIQAH", dob: "25/11/2017" },
+
+    { name: "PRIYANSHI DAS", dob: "27/11/2017" },
+
+    { name: "EBADUR RAHMAN LASKAR", dob: "28/11/2017" },
+
+    { name: "SADIQUE AHMAD CHOUDHURY", dob: "29/11/2017" },
+
+    { name: "ATIA ELAHI TAPADAR", dob: "07/11/2018" },
+
+    { name: "RAIMA TARAPDAR", dob: "15/11/2018" },
+
+    { name: "ANUSHKA BHATTACHARJEE", dob: "16/11/2018" },
+
+    { name: "RITISHA MAZUMDAR", dob: "22/11/2018" },
+
+    { name: "RIJWAN HUSSAIN", dob: "25/11/2018" },
+
+    { name: "AANGANA DAS", dob: "28/11/2018" },
+
+    { name: "AMJAD HUSSAIN", dob: "29/11/2018" },
+
+    { name: "ANURAG DEY", dob: "01/11/2019" },
+
+    { name: "DEVAKSHI CHANDA", dob: "08/11/2019" }
+
+];
+
+// =====================================
+// ELEMENTS
+// =====================================
+
+const select = document.getElementById("studentSelect");
+
+const grid = document.getElementById("studentGrid");
+
+const cake = document.getElementById("cake");
+
+// =====================================
+// CREATE STUDENT DROPDOWN AND CARDS
+// =====================================
+
+students.forEach((student, index) => {
+
+    // Dropdown
+
+    const option = document.createElement("option");
+
+    option.value = index;
+
+    option.textContent =
+        student.name + " — 🎂 " + student.dob;
+
+    select.appendChild(option);
+
+    // Student card
+
+    const button = document.createElement("button");
+
+    button.className = "student";
+
+    button.innerHTML = `
+        <strong>${student.name}</strong>
+        <small>🎂 ${student.dob}</small>
+    `;
+
+    button.onclick = function() {
+
+        select.value = index;
+
+        chooseStudent();
+
+    };
+
+    grid.appendChild(button);
+
+});
+
+// =====================================
+// FORMAT STUDENT NAME
+// =====================================
+
+function formatName(name) {
+
+    return name
+        .toLowerCase()
+        .replace(/\b\w/g, letter => letter.toUpperCase());
+
+}
+
+// =====================================
+// SELECT STUDENT
+// =====================================
+
+function chooseStudent() {
+
+    const selectedIndex = select.value;
+
+    if (selectedIndex === "") return;
+
+    const student = students[Number(selectedIndex)];
+
+    const name = student.name;
+
+    const dob = student.dob;
+
+    const displayName = formatName(name);
+
+    // Hero
+
+    document.getElementById("heroName")
+        .textContent = displayName + "!";
+
+    // Student name
+
+    document.getElementById("studentName")
+        .textContent = displayName;
+
+    // Date of birth
+
+    document.getElementById("studentDOB")
+        .textContent = dob;
+
+    // Cake title
+
+    document.getElementById("cakeTitle")
+        .textContent =
+        "🎂 Happy Birthday " + displayName + "!";
+
+    // Birthday wishes
+
+    document.getElementById("wishTitle")
+        .textContent =
+        "Happy Birthday, " + displayName + "! 🎉";
+
+    document.getElementById("wishText")
+        .textContent =
+        "Born on " + dob +
+        ". May your birthday be filled with happiness, " +
+        "confidence, wonderful discoveries, friendship, " +
+        "and dreams that come true. " +
+        "Keep learning and keep shining!";
+
+    // Learning achievements
+
+    document.getElementById("learning")
+        .textContent =
+        displayName +
+        ", celebrate every little achievement. " +
+        "Your hard work, curiosity, and dedication " +
+        "make you special!";
+
+    // Friendship
+
+    document.getElementById("friendship")
+        .textContent =
+        "May " + displayName +
+        "'s birthday be full of laughter, friendship, " +
+        "teamwork, and wonderful memories!";
+
+    // Dreams
+
+    document.getElementById("dream")
+        .textContent =
+        "Keep dreaming big, " + displayName +
+        "! Believe in yourself and make your future amazing!";
+
+    // Special birthday memory
+
+    document.getElementById("memoryTitle")
+        .textContent =
+        "📸 Special Moments of " + displayName;
+
+    document.getElementById("memoryText")
+        .textContent =
+        "Today we celebrate " + displayName +
+        ", born on " + dob +
+        ". Celebrate their smile, learning journey, " +
+        "bright ideas, achievements, and wonderful memories. " +
+        "Happy Birthday! 🎈";
+
+    // Cake animation
+
+    cake.classList.remove("show");
+
+    void cake.offsetWidth;
+
+    cake.classList.add("show");
+
+    // Highlight selected student
+
+    document.querySelectorAll(".student").forEach(
+        (button, index) => {
+
+            button.classList.toggle(
+                "active",
+                index === Number(selectedIndex)
+            );
+
+        }
+    );
+
+    // Scroll to cake
+
+    cake.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
+
+}
+
+// =====================================
+// CONFETTI CELEBRATION
+// =====================================
+
+function celebrate() {
+
+    if (select.value === "") {
+
+        alert("Please choose a birthday student first!");
+
+        return;
+
+    }
+
+    const emojis = [
+
+        "🎉",
+        "🎊",
+        "✨",
+        "🎈",
+        "💖",
+        "⭐",
+        "🎂"
+
+    ];
+
+    for (let i = 0; i < 70; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        confetti.style.fontSize =
+            (12 + Math.random() * 20) + "px";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+
+            confetti.remove();
+
+        }, 5000);
+
+    }
+
+}
+
+// =====================================
+// LOGO INTRO
+// =====================================
+
+window.addEventListener("load", function() {
+
+    setTimeout(function() {
+
+        document.getElementById("intro")
+            .classList.add("hide");
+
+    }, 3000);
+
+});
+
+</script>
+
+</body>
+</html>
